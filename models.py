@@ -2,13 +2,15 @@ from enum import unique
 from os import truncate
 from peewee import *
 import datetime
+import os
+from playhouse.db_url import connect
 
 
 from flask_login import UserMixin
 from peewee import database_required
 
-DATABASE = SqliteDatabase('places.sqlite')
-
+# DATABASE = SqliteDatabase('places.sqlite')
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///places.sqlite')
 class User(UserMixin, Model):
     username=CharField(unique=True)
     email = CharField(unique=True)
