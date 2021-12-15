@@ -8,7 +8,7 @@ from playhouse.shortcuts import model_to_dict
 
 from flask_login import current_user
 
-from decimal import Decimal
+
 
 favoriteplaces = Blueprint('favoriteplaces', 'favoriteplaces')
 
@@ -25,8 +25,8 @@ def favorites_index():
 @favoriteplaces.route('/', methods=['POST'])
 def create_favoriteplace():
     payload = request.get_json()
-    payload['latitude'] = Decimal(payload['latitude'])
-    payload['longitude'] = Decimal(payload['longitude'])
+    # payload['latitude'] = Decimal(payload['latitude'])
+    # payload['longitude'] = Decimal(payload['longitude'])
     print(payload)
     new_place = models.Favorite.create(username=current_user, url=payload['url'], place=payload['place'], city=payload['city'], country=payload['country'], type=payload['type'], latitude=payload['latitude'], longitude=payload['longitude'])
     
