@@ -29,8 +29,8 @@ def load_user(user_id):
     except models.DoesNotExist:
         return None 
 
-CORS(favoriteplaces, origins=['http://localhost:3000'], supports_credentials=True)  
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(favoriteplaces, origins=['http://localhost:3000', 'https://verbunden-concierge.herokuapp.com'], supports_credentials=True)  
+CORS(users, origins=['http://localhost:3000', 'https://verbunden-concierge.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(favoriteplaces, url_prefix='/favoriteplaces')
 app.register_blueprint(users, url_prefix='/users')
